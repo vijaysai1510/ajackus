@@ -8,8 +8,9 @@ function App() {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showList, setShowList] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
-    document.title =  "User Management System";
+    document.title = "User Management System";
   });
 
   const handleAddUser = (userData) => {
@@ -22,9 +23,11 @@ function App() {
   };
 
   const handleEditUser = (updatedUser) => {
-    setUsers(users.map(user => 
-      user.id === updatedUser.id ? updatedUser : user
-    ));
+    setUsers(prevUsers => 
+      prevUsers.map(user => 
+        user.id === updatedUser.id ? {...updatedUser} : user
+      )
+    );
     setSelectedUser(null);
     setIsModalOpen(false);
   };
@@ -52,7 +55,7 @@ function App() {
       <div className="mt-4 flex justify-center">
         <button
           onClick={() => setShowList(false)}
-          className="w-100 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 rounded-lg hover:from-purple-700 hover:to-purple-900 transition-all transform hover:scale-[1.02] duration-200 shadow-lg px-4 py-2 "
+          className="w-100 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 rounded-lg hover:from-purple-700 hover:to-purple-900 transition-all transform hover:scale-[1.02] duration-200 shadow-lg px-4 py-2"
         >
           Add New User
         </button>

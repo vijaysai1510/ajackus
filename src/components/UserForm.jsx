@@ -9,7 +9,8 @@ const UserForm = ({ user, onAddUser, onEditUser }) => {
     email: '',
     username: '',
     phone: '',
-    website: ''
+    website: '',
+    id: null
   });
 
   useEffect(() => {
@@ -20,7 +21,8 @@ const UserForm = ({ user, onAddUser, onEditUser }) => {
         email: user.email || '',
         username: user.username || '',
         phone: user.phone || '',
-        website: user.website || ''
+        website: user.website || '',
+        id: user.id // Include the ID when editing
       });
     }
   }, [user]);
@@ -33,7 +35,7 @@ const UserForm = ({ user, onAddUser, onEditUser }) => {
     };
     
     if (user) {
-      onEditUser(userData);
+      onEditUser({...userData, id: user.id}); // Make sure to pass the ID when editing
     } else {
       onAddUser(userData);
     }
